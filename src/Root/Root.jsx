@@ -1,9 +1,16 @@
 import React from 'react';
+import Navbar from '../shared/Navbar';
+import Footer from '../shared/Footer';
+import { Outlet } from 'react-router-dom';
 
 const Root = () => {
     return (
         <div>
-            <h2>From Root</h2>
+             <Navbar></Navbar>
+            <div className='min-h-[calc(100vh-324px)]'>
+                <Outlet></Outlet>
+            </div>
+            <Footer></Footer>
         </div>
     );
 };

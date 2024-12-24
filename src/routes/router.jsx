@@ -8,6 +8,7 @@ import Rooms from "../Rooms/Rooms";
 import MyBookings from "../MyBookings/MyBookings";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -20,19 +21,19 @@ const router = createBrowserRouter([
                 element: <Home></Home>,
             },
             {
-                path: "/rooms",
+                path: "rooms",
                 element: <Rooms></Rooms>,
             },
             {
-                path: "/my_bookings",
-                element: <MyBookings></MyBookings>,
+                path: "my_bookings/:email",
+                element: <PrivateRoute><MyBookings></MyBookings></PrivateRoute>,
             },
             {
-                path: "/login",
+                path: "login",
                 element: <Login></Login>,
             },
             {
-                path: "/register",
+                path: "register",
                 element: <Register></Register>,
             },
         ]

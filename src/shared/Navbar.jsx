@@ -11,7 +11,7 @@ const Navbar = () => {
         <NavLink to={`/my_bookings/${user?.email}`}>My Bookings</NavLink>
     </>
     return (
-        <div className='sticky top-0 z-10 backdrop-blur-sm bg-pink-400 bg-opacity-20 py-4'>
+        <div className='sticky top-0 z-50 backdrop-blur-sm bg-pink-400 bg-opacity-20 py-4'>
             <div className="navbar bg-pink-300 rounded-lg w-11/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">

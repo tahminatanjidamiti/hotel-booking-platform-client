@@ -32,7 +32,7 @@ const UserReviews = () => {
       <h2 className="text-4xl font-semibold text-center mb-6">User Reviews</h2>
       <Slider {...settings}>
         {reviews.map((review) => (
-          <div key={review._id} className="review-item bg-purple-500 p-4 rounded shadow-lg text-center">
+          <div key={review._id} className="review-item bg-purple-400 p-4 rounded shadow-lg text-center">
             <p className="font-bold text-lg">{review.user}</p>
             <p className="text-yellow-500">Rating: {review.rating} / 5</p>
             <p className="italic text-purple-950">"{review.comment}"</p>

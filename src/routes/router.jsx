@@ -9,6 +9,7 @@ import MyBookings from "../MyBookings/MyBookings";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import PrivateRoute from "./PrivateRoute";
+import RoomDetails from "../Components/RoomDetails";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: "rooms",
                 element: <Rooms></Rooms>,
+            },
+            {
+                path: "rooms/:id",
+                element: <RoomDetails></RoomDetails>, 
             },
             {
                 path: "my_bookings/:email",

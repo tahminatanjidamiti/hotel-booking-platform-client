@@ -10,7 +10,9 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import RoomDetails from "../Components/RoomDetails";
-import Gallery from "../Gallery/Gallery";
+import GalleryPage from "../Gallery/GalleryPage";
+
+
 
 const router = createBrowserRouter([
     {
@@ -32,7 +34,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "gallery",
-                element: <Gallery></Gallery>,
+                element: <GalleryPage></GalleryPage>,
             },
             {
                 path: "my_bookings/:email",

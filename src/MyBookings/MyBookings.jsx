@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../provider/AuthProvider";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
@@ -14,12 +15,16 @@ const MyBookings = () => {
   const [newDate, setNewDate] = useState(null);
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
 
+  const axiosSecure = useAxiosSecure();
+
   useEffect(() => {
     if (user?.email) {
-      axios
-        .get(`http://localhost:5000/my-bookings?userId=${user.email}`)
+      axiosSecure
+        .get(`/my-bookings?userId=${user.email}`)
         .then((response) => setBookings(response.data))
-        .catch((error) => console.error("Error fetching bookings", error));
+        .catch((error) => {
+          
+        });
     }
   }, [user]);
 

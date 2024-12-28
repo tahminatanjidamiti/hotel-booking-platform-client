@@ -8,6 +8,7 @@ const Navbar = () => {
     const links = <>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/rooms">Rooms</NavLink>
+        <NavLink to="/gallery">Gallery</NavLink>
         <NavLink to={`/my_bookings/${user?.email}`}>My Bookings</NavLink>
     </>
     return (

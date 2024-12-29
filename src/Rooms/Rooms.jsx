@@ -5,26 +5,39 @@ import { Link } from "react-router-dom";
 const Rooms = () => {
     const [rooms, setRooms] = useState([]);
     const [view, setView] = useState("card");
+    const [minPrice, setMinPrice] = useState(""); // Track the minimum price
+    const [maxPrice, setMaxPrice] = useState(""); // Track the maximum price
 
     useEffect(() => {
-        axios.get("http://localhost:5000/rooms").then((response) => {
-            const roomsData = response.data;
-            // Fetch reviews count for each room
-            const roomsWithReviewCount = roomsData.map(async (room) => {
-                const reviewResponse = await axios.get(
-                    `http://localhost:5000/rooms/${room._id}/reviews`
-                );
-                return {
-                    ...room,
-                    reviewsCount: reviewResponse.data.length,
-                };
-            });
+        // Make the API call with optional price filters
+        const fetchRooms = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/rooms", {
+                    params: { minPrice, maxPrice }
+                });
 
-            Promise.all(roomsWithReviewCount).then((roomsWithCount) => {
-                setRooms(roomsWithCount);
-            });
-        });
-    }, []);
+                const roomsData = response.data;
+                // Fetch reviews count for each room
+                const roomsWithReviewCount = roomsData.map(async (room) => {
+                    const reviewResponse = await axios.get(
+                        `http://localhost:5000/rooms/${room._id}/reviews`
+                    );
+                    return {
+                        ...room,
+                        reviewsCount: reviewResponse.data.length,
+                    };
+                });
+
+                Promise.all(roomsWithReviewCount).then((roomsWithCount) => {
+                    setRooms(roomsWithCount);
+                });
+            } catch (error) {
+                console.error("Error fetching rooms:", error);
+            }
+        };
+
+        fetchRooms();
+    }, [minPrice, maxPrice]); // Trigger fetch when minPrice or maxPrice changes
 
     const toggleView = () => {
         setView(view === "card" ? "table" : "card");
@@ -32,12 +45,30 @@ const Rooms = () => {
 
     return (
         <div className="container mx-auto p-4">
+            {/* Price filter UI */}
+            <div className="flex justify-between mb-4">
+                <div className="flex space-x-4">
+                    <input
+                        type="number"
+                        placeholder="Min Price"
+                        value={minPrice}
+                        onChange={(e) => setMinPrice(e.target.value)}
+                        className="input input-bordered input-info"
+                    />
+                    <input
+                        type="number"
+                        placeholder="Max Price"
+                        value={maxPrice}
+                        onChange={(e) => setMaxPrice(e.target.value)}
+                        className="input input-bordered input-info"
+                    />
+                </div>
+            </div>
+
             <div className="flex justify-end mb-4 space-x-4">
                 <button
                     onClick={() => setView("card")}
-                    className={`btn btn-ghost ${
-                        view === "card" ? "text-primary" : "text-gray-500"
-                    }`}
+                    className={`btn btn-ghost ${view === "card" ? "text-primary" : "text-gray-500"}`}
                 >
                     <img
                         src="https://img.icons8.com/?size=40&id=49715&format=png"
@@ -46,9 +77,7 @@ const Rooms = () => {
                 </button>
                 <button
                     onClick={() => setView("table")}
-                    className={`btn btn-ghost ${
-                        view === "table" ? "text-primary" : "text-gray-500"
-                    }`}
+                    className={`btn btn-ghost ${view === "table" ? "text-primary" : "text-gray-500"}`}
                 >
                     <img
                         src="https://img.icons8.com/?size=36&id=6FQHRBVAaLsg&format=png"
@@ -56,6 +85,7 @@ const Rooms = () => {
                     />
                 </button>
             </div>
+
             {view === "card" ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {rooms.map((room) => (
@@ -70,9 +100,7 @@ const Rooms = () => {
                                 </figure>
                                 <div className="card-body">
                                     <h2 className="card-title">{room.name}</h2>
-                                    <p className="text-sm text-gray-600">
-                                        {room.location}
-                                    </p>
+                                    <p className="text-sm text-gray-600">{room.location}</p>
                                     <p className="text-primary font-semibold">
                                         ${room.price} per night
                                     </p>

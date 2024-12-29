@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Rooms = () => {
     const [rooms, setRooms] = useState([]);
@@ -12,7 +13,7 @@ const Rooms = () => {
         // Make the API call with optional price filters
         const fetchRooms = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/rooms", {
+                const response = await axios.get("https://my-eleventh-assignment-server-pi.vercel.app/rooms", {
                     params: { minPrice, maxPrice }
                 });
 
@@ -20,7 +21,7 @@ const Rooms = () => {
                 // Fetch reviews count for each room
                 const roomsWithReviewCount = roomsData.map(async (room) => {
                     const reviewResponse = await axios.get(
-                        `http://localhost:5000/rooms/${room._id}/reviews`
+                        `https://my-eleventh-assignment-server-pi.vercel.app/rooms/${room._id}/reviews`
                     );
                     return {
                         ...room,
@@ -32,7 +33,7 @@ const Rooms = () => {
                     setRooms(roomsWithCount);
                 });
             } catch (error) {
-                console.error("Error fetching rooms:", error);
+                // console.error("Error fetching rooms:", error);
             }
         };
 
@@ -45,15 +46,18 @@ const Rooms = () => {
 
     return (
         <div className="container mx-auto p-4">
+            <Helmet>
+                <title>RestAura | Rooms</title>
+            </Helmet>
             {/* Price filter UI */}
             <div className="flex justify-between mb-4">
-                <div className="flex space-x-4">
+                <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-x-4">
                     <input
                         type="number"
                         placeholder="Min Price"
                         value={minPrice}
                         onChange={(e) => setMinPrice(e.target.value)}
-                        className="input input-bordered input-info"
+                        className="input input-bordered input-info md:mt-4"
                     />
                     <input
                         type="number"

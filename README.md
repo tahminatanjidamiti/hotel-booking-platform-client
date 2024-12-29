@@ -1,8 +1,31 @@
-# React + Vite
+# RestAura - Hotel Booking Platform.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Our platform is designed to deliver a smooth and captivating experience for discovering and reserving hotel rooms. With an engaging interface, powerful features, and strong security measures, we provide all users with a trustworthy and enjoyable environment. Experience the ease of booking your next stay with us!
 
-Currently, two official plugins are available:
+# Live Link
+# [https://my-eleventh-assignment-client.web.app/](https://my-eleventh-assignment-client.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## key features 
+
+- Map.
+- Filters.
+- Animation.
+- Virtual DOM.
+- Authentication.
+- Responsive Layout.
+- Dynamic Review Display.
+- Reusability and Scalability.
+- Toggle the Card to Table View.
+
+
+## npm packages used
+
+- react-icons.
+- sweetalert2.
+- react-helmet.
+- framer-motion.
+- react toastify.
+- react-datepicker.
+- react-leaflet leaflet.
+- react-silck silck-carousel.
+

@@ -1,9 +1,13 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 
 const GalleryPage = () => {
     return (
         <div>
+            <Helmet>
+                <title>RestAura | Gallery</title>
+            </Helmet>
             <h2 className="text-3xl font-extrabold mb-8 flex justify-center items-center mx-auto text-purple-950 mt-5">Gallery</h2>
             <div className='w-11/12 mx-auto py-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                 <div className='h-[300px]'>

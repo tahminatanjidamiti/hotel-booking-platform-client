@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../provider/AuthProvider";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const MyBookings = () => {
         .get(`/my-bookings?userId=${user.email}`)
         .then((response) => setBookings(response.data))
         .catch((error) => {
-          
+
         });
     }
   }, [user]);
@@ -38,11 +39,11 @@ const MyBookings = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .post(`http://localhost:5000/cancel-booking`, { bookingId, roomId })
+          .post(`https://my-eleventh-assignment-server-pi.vercel.app/cancel-booking`, { bookingId, roomId })
           .then(() => {
             setBookings(bookings.filter((booking) => booking._id !== bookingId));
             axios
-              .get(`http://localhost:5000/rooms/${roomId}`)
+              .get(`https://my-eleventh-assignment-server-pi.vercel.app/rooms/${roomId}`)
               .then((response) => {
                 Swal.fire("Cancelled!", "Your booking has been cancelled.", "success");
               })
@@ -54,7 +55,7 @@ const MyBookings = () => {
 
   const updateBookingDate = () => {
     axios
-      .post(`http://localhost:5000/update-booking`, { bookingId: selectedBooking._id, newDate })
+      .post(`https://my-eleventh-assignment-server-pi.vercel.app/update-booking`, { bookingId: selectedBooking._id, newDate })
       .then(() => {
         Swal.fire("Updated!", "Your booking date has been updated.", "success");
         setBookings(
@@ -71,7 +72,7 @@ const MyBookings = () => {
 
   const submitReview = () => {
     axios
-      .post(`http://localhost:5000/rooms/${selectedBooking.roomId}/reviews`, {
+      .post(`https://my-eleventh-assignment-server-pi.vercel.app/rooms/${selectedBooking.roomId}/reviews`, {
         user: user?.displayName,
         rating: newReview.rating,
         comment: newReview.comment,
@@ -86,6 +87,9 @@ const MyBookings = () => {
 
   return (
     <div className="container mx-auto md:p-4">
+      <Helmet>
+        <title>RestAura | MyBookings</title>
+      </Helmet>
       <h1 className="text-2xl font-semibold mb-4">My Bookings</h1>
       {bookings.length > 0 ? (
         <div className="overflow-x-auto">
@@ -163,7 +167,7 @@ const MyBookings = () => {
               onChange={(date) => setNewDate(date)}
               dateFormat="MM/dd/yyyy h:mm aa"
               showTimeSelect
-              timeIntervals={15} 
+              timeIntervals={15}
               timeCaption="Time"
               className="input input-bordered"
             />

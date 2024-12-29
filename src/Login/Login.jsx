@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth, AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
     const { userLogin, setUser, } = useContext(AuthContext);
@@ -14,36 +15,39 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         signInWithPopup(auth, googleProvider)
-        .then(result => {
-            const user = result.user;
-            setUser(user);
-            toast.success("🎉 Login Successful! 🎉");
-            navigate(location?.state ? location.state : "/");
-        })
-        .catch(err => {
-            setError({ ...error, login: err.code })
-        })
+            .then(result => {
+                const user = result.user;
+                setUser(user);
+                toast.success("🎉 Login Successful! 🎉");
+                navigate(location?.state ? location.state : "/");
+            })
+            .catch(err => {
+                setError({ ...error, login: err.code })
+            })
     }
     const handleSubmit = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-           
-        
+
+
         userLogin(email, password)
-        .then(result => {
-            const user = result.user;
-            setUser(user);
-            toast.success("🎉 Login Successful! 🎉");
-            navigate(location?.state ? location.state : "/");
-        })
-        .catch(err => {
-            setError({ ...error, login: err.code })
-        })
-            
+            .then(result => {
+                const user = result.user;
+                setUser(user);
+                toast.success("🎉 Login Successful! 🎉");
+                navigate(location?.state ? location.state : "/");
+            })
+            .catch(err => {
+                setError({ ...error, login: err.code })
+            })
+
     }
     return (
         <div className='min-h-screen flex justify-center items-center border-8 border-purple-950'>
+            <Helmet>
+                <title>RestAura | Login</title>
+            </Helmet>
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10">
                 <h2 className='text-2xl font-semibold text-center'>Login your account</h2>
                 <form onSubmit={handleSubmit} className="card-body">
@@ -67,7 +71,7 @@ const Login = () => {
                             )
                         }
                         <label className="label">
-                        <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
                     </div>
                     <div className="form-control mt-6">

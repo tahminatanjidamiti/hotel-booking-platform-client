@@ -7,7 +7,7 @@ const FeaturedRooms = () => {
 
     useEffect(() => {
           axios
-            .get("http://localhost:5000/featured-rooms")
+            .get("https://my-eleventh-assignment-server-pi.vercel.app/featured-rooms")
             .then((response) => setRooms(response.data))
             .catch((error) => {
 

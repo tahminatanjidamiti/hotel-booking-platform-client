@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet-async";
 
 const RoomDetails = () => {
   const { user } = useContext(AuthContext);
@@ -16,13 +17,17 @@ const RoomDetails = () => {
   const { id: roomId } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/rooms/${roomId}`)
+    axios.get(`https://my-eleventh-assignment-server-pi.vercel.app/rooms/${roomId}`)
       .then((response) => setRoom(response.data))
-      .catch((error) => console.error("Error fetching room data", error));
+      .catch((error) => {
+        // console.error("Error fetching room data", error)
+      });
 
-    axios.get(`http://localhost:5000/rooms/${roomId}/reviews`)
+    axios.get(`https://my-eleventh-assignment-server-pi.vercel.app/rooms/${roomId}/reviews`)
       .then((response) => setReviews(response.data))
-      .catch((error) => console.error("Error fetching reviews", error));
+      .catch((error) => {
+        // console.error("Error fetching reviews", error)
+      });
   }, [roomId]);
 
   const handleBooking = () => {
@@ -41,7 +46,7 @@ const RoomDetails = () => {
   const confirmBooking = () => {
     if (!selectedDate) return Swal.fire("Please select a date!");
 
-    axios.post("http://localhost:5000/book", {
+    axios.post("https://my-eleventh-assignment-server-pi.vercel.app/book", {
       userId: user?.id || user?.email,
       roomId,
       date: selectedDate.toISOString(),
@@ -50,15 +55,20 @@ const RoomDetails = () => {
         Swal.fire("Room booked successfully!", "", "success");
         setBookingModal(false);
         setRoom({ ...room, availability: false });
-        axios.get(`http://localhost:5000/rooms/${roomId}`)
+        axios.get(`https://my-eleventh-assignment-server-pi.vercel.app/rooms/${roomId}`)
           .then((response) => setRoom(response.data))
-          .catch((error) => console.error("Error fetching room data", error));
+          .catch((error) => {
+            // console.error("Error fetching room data", error)
+          });
       })
       .catch(() => Swal.fire("Failed to book the room. Please try again.", "", "error"));
   };
 
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>RestAura | Rooms | {roomId}</title>
+      </Helmet>
       {room ? (
         <>
           <div className="card shadow-xl">

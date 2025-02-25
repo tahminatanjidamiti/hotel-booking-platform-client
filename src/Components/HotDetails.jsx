@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Typewriter } from 'react-simple-typewriter';
 
 const HotDetails = () => {
     const [activeModal, setActiveModal] = useState(null);
@@ -11,6 +12,13 @@ const HotDetails = () => {
     const handleModalClose = () => {
         setActiveModal(null);
     };
+    const handleType = (count) => {
+      // console.log(`Word typed: ${count}`);
+  };
+  
+    const handleDone = () => {
+      // console.log(`Done after 5 loops!`)
+    }
 
 
     const data = [
@@ -60,8 +68,24 @@ const HotDetails = () => {
     return (
         <div className="w-11/12 mx-auto my-20">
       <h2 className="text-3xl font-extrabold mb-8 flex justify-center items-center mx-auto">
-        Explore Our Hot Details
+         
       </h2>
+      <h1 className="text-3xl font-extrabold mb-8 flex justify-center items-center mx-auto">
+      Explore Our {' '}
+                    <span style={{ color: 'orchid', fontWeight: 'bold', paddingLeft: '10px' }}>
+                        <Typewriter
+                            words={['Hot Details!']}
+                            loop={Infinity}
+                            cursor
+                            cursorStyle='_'
+                            typeSpeed={70}
+                            deleteSpeed={50}
+                            delaySpeed={1000}
+                            onLoopDone={handleDone}
+                            onType={handleType}
+                        />
+                    </span>
+                </h1>
       <p className="my-10 w-9/12 mx-auto text-center">
         Explore our stunning discount rooms, where luxury meets comfort—
         offering exceptional amenities, breathtaking views, and unforgettable

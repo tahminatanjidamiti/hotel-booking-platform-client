@@ -9,7 +9,8 @@ const GalleryPage = () => {
                 <title>RestAura | Gallery</title>
             </Helmet>
             <h2 className="text-3xl font-extrabold mb-8 flex justify-center items-center mx-auto text-purple-950 mt-5">Gallery</h2>
-            <div className='w-11/12 mx-auto py-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+            <div className='w-11/12 mx-auto p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 relative'>
+            <div className="absolute inset-0 animate-neon-glow -z-10"></div>
                 <div className='h-[300px]'>
                     <img className='w-full h-full object-cover rounded-3xl' src="https://i.ibb.co.com/d2kSydL/digital-lavender-style-interior-design.jpg" alt="Picture hotels!" />
                 </div>

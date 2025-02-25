@@ -15,8 +15,13 @@ const FeaturedRooms = () => {
       }, []);
 
     return (
-        <div className="bg-[#F4F3F0] p-8 md:p-24">
-        <h2 className="text-3xl font-extrabold mb-8 flex justify-center items-center mx-auto">Featured Rooms</h2>
+        <div className="dark:bg-black p-8 md:px-24">
+          <div className='flex justify-start w-6/12 mx-auto'>
+          <img src="https://img.icons8.com/?size=80&id=Io7A2eyYUHeN&format=png" alt="Animated icon" />
+        </div>
+        <div>
+        <h2 className="gap-2 text-3xl font-extrabold mb-8 flex justify-center items-center mx-auto">Featured Rooms <img src="https://img.icons8.com/?size=24&id=peMa0uEga3bQ&format=gif" alt="Animated icon" /></h2>
+        </div>
         <p className='my-10 w-9/12 mx-auto text-center'>Discover our stunning featured rooms, where luxury meets comfort—offering exceptional amenities, breathtaking views, and unforgettable experiences tailored to make your stay extraordinary.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
           {rooms.map((room) => (

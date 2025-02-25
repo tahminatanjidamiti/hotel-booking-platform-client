@@ -103,6 +103,8 @@ const Map = () => {
     return (
         <div>
             <h2 className="text-3xl font-extrabold mb-8 flex justify-center items-center mx-auto">Map</h2>
+            <div className='relative'>
+            <div className="absolute inset-0 animate-neon-glow-purple -z-10"></div>
             <MapContainer
             center={[1.3521, 103.8198]} // Default center (Singapore)
             zoom={5}
@@ -122,6 +124,7 @@ const Map = () => {
                 </Marker>
             ))}
         </MapContainer>
+            </div>
         </div>
         
     );

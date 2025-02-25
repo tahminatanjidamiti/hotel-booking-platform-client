@@ -26,6 +26,8 @@ Our platform is designed to deliver a smooth and captivating experience for disc
 - framer-motion.
 - react toastify.
 - react-datepicker.
+- react-fast-marquee.
 - react-leaflet leaflet.
+- react-simple-typewriter.
 - react-silck silck-carousel.
 

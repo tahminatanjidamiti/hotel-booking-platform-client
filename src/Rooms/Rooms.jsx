@@ -94,7 +94,8 @@ const Rooms = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {rooms.map((room) => (
                         <Link to={`/rooms/${room._id}`} key={room._id}>
-                            <div className="card card-compact bg-base-100 shadow-xl hover:shadow-2xl cursor-pointer">
+                            <div className="card card-compact shadow-xl hover:shadow-2xl cursor-pointer relative">
+                            <div className="absolute inset-0 animate-neon-glow -z-10"></div>
                                 <figure>
                                     <img
                                         className="h-48 w-full object-cover"

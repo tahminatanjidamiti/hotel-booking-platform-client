@@ -74,7 +74,7 @@ const HotDetails = () => {
       Explore Our {' '}
                     <span style={{ color: 'orchid', fontWeight: 'bold', paddingLeft: '10px' }}>
                         <Typewriter
-                            words={['Hot Details!']}
+                            words={['Exclusive Info','Hot Details!']}
                             loop={Infinity}
                             cursor
                             cursorStyle='_'

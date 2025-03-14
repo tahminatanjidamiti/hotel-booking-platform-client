@@ -2,7 +2,8 @@ import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 const Footer = () => {
     return (
-        <div className="bg-pink-400 bg-opacity-50 py-5">
+        <div className="bg-pink-400 bg-opacity-50 py-5 mt-5 relative">
+            <div className="absolute inset-0 animate-neon-glow -z-10"></div>
             <footer className="footer text-gray-700 px-4 md:px-16">
                 <nav>
                     <p className="text-4xl italic text-purple-600 font-bold">RestAura</p>

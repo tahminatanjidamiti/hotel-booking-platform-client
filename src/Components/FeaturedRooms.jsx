@@ -31,7 +31,7 @@ const FeaturedRooms = () => {
               </figure>
               <div className="card-body">
                 <h3 className="text-xl font-bold">{room.description}</h3>
-                <Link to={`/rooms/${room._id}`} className="btn bg-purple-300 mt-4">Book Now</Link>
+                <Link to={`/rooms/${room._id}`} className="btn bg-purple-300 mt-4 text-black">Book Now</Link>
               </div>
             </div>
           ))}
